@@ -24,13 +24,6 @@
 
 
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
-
 
 
 
@@ -488,6 +481,10 @@ animation-play-state:running;
           
 
   
+    <div class="comments" id="comments">
+    </div>
+
+  
 
 
 
@@ -762,6 +759,8 @@ animation-play-state:running;
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         
+          <span id="scrollpercent"><span>0</span>%</span>
+        
       </div>
     
 
@@ -853,6 +852,38 @@ animation-play-state:running;
   
 
   
+  
+
+  
+
+<script src="[object Object]"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'HHT2OnjduBlvptLG10yIEKs6-gzGzoHsz',
+    appKey: 'Jo57YMhPEAnk8iMw1eSaBdeq',
+    placeholder: '快来评论我ヾﾉ≧∀≦)o',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-CN' || 'zh-cn'
+  });
+</script>
+
+
 
 
   
