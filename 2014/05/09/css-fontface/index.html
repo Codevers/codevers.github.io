@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.0.1">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="随着Css3的流行，很多网站都开始使用css3技术，开始摒弃年代久远的IE浏览器，让更多的技术引入，绽放属于它们的光彩，博主表示非常赞同，毕竟谁不喜欢炫酷的效果，并且只要使用Css3就能轻易实现，大大的畅快人心，在这里，小鹏博客这里介绍一种css3属性，@font-face，神秘的告诉你，这个属性连古老的IE浏览器都支持！font-face是css3中的一个模块，它可以使你自己定义字体，并且实现在">
+<meta name="keywords" content="Css3属性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Css3：@font-face服务器端加载字体">
+<meta property="og:url" content="http://yoursite.com/2014/05/09/css-fontface/index.html">
+<meta property="og:site_name" content="Codevers">
+<meta property="og:description" content="随着Css3的流行，很多网站都开始使用css3技术，开始摒弃年代久远的IE浏览器，让更多的技术引入，绽放属于它们的光彩，博主表示非常赞同，毕竟谁不喜欢炫酷的效果，并且只要使用Css3就能轻易实现，大大的畅快人心，在这里，小鹏博客这里介绍一种css3属性，@font-face，神秘的告诉你，这个属性连古老的IE浏览器都支持！font-face是css3中的一个模块，它可以使你自己定义字体，并且实现在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/ieeee1.jpg">
+<meta property="og:image" content="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/U7ABV3BQ_MVO0WYP@F83K1.jpg">
+<meta property="og:image" content="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/fontjiya1.jpg">
+<meta property="og:updated_time" content="2019-03-26T06:23:09.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Css3：@font-face服务器端加载字体">
+<meta name="twitter:description" content="随着Css3的流行，很多网站都开始使用css3技术，开始摒弃年代久远的IE浏览器，让更多的技术引入，绽放属于它们的光彩，博主表示非常赞同，毕竟谁不喜欢炫酷的效果，并且只要使用Css3就能轻易实现，大大的畅快人心，在这里，小鹏博客这里介绍一种css3属性，@font-face，神秘的告诉你，这个属性连古老的IE浏览器都支持！font-face是css3中的一个模块，它可以使你自己定义字体，并且实现在">
+<meta name="twitter:image" content="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/ieeee1.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/05/09/css-fontface/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Css3：@font-face服务器端加载字体 | Codevers</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Codevers</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">For Hexo</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/05/09/css-fontface/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夜丶光">
+      <meta itemprop="description" content="我的私人笔记 :)">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Codevers">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Css3：@font-face服务器端加载字体
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2014-05-09 22:34:27" itemprop="dateCreated datePublished" datetime="2014-05-09T22:34:27+08:00">2014-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-26 14:23:09" itemprop="dateModified" datetime="2019-03-26T14:23:09+08:00">2019-03-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Css学习/" itemprop="url" rel="index"><span itemprop="name">Css学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2014/05/09/css-fontface/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2014/05/09/css-fontface/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着Css3的流行，很多网站都开始使用css3技术，开始摒弃年代久远的IE浏览器，让更多的技术引入，绽放属于它们的光彩，博主表示非常赞同，毕竟谁不喜欢炫酷的效果，并且只要使用Css3就能轻易实现，大大的畅快人心，在这里，小鹏博客这里介绍一种css3属性，@font-face，神秘的告诉你，这个属性连古老的IE浏览器都支持！<br>font-face是css3中的一个模块，它可以使你自己定义字体，并且实现在你的网页中，由于不同用户的电脑内的字体会有所不同，经常导致字体的不统一，不过没关系，font-face可以自己定义字体就行了，不再受憋屈了。</p>
+<p><strong>首先我们来看一下@font-face的用法规则：</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">      <span class="attribute">font-family</span>: [yourwebfontname];</span><br><span class="line">      <span class="attribute">src</span>: url:(source) [format](type)</span><br><span class="line">      font-weight: normal;</span><br><span class="line">      <span class="attribute">font-style</span>: normal;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>取值说明：<br><strong>YourWebFontName </strong>: 从字面上的意思可以看出,”你的web字体名”，这里可以自定义个字体名，到时候需要这个名字来引用，建议使用通俗易懂点的名字，字体名也好。<br><strong>source </strong>: 此值指的是是字体的存放路径，可以相对或绝对，只要能引用到即可。<br><strong>format </strong>: 此值指的是你自定义的字体的格式，主要用来帮助浏览器识别，其值主要有以下几种类型：truetype,opentype,truetype-aat,embedded-opentype,avg等。<br>剩下俩个不用我介绍了，自己看着定义。</p>
+<p>很高兴的告诉大家，几乎所有浏览器都支持它，先来看下兼容视图：</p>
+<p><a href="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/ieeee1.jpg" target="_blank" rel="noopener"><img src="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/ieeee1.jpg" alt="ieeee"></a></p>
+<p>不过支持它需要做一些事情，由于不同的浏览器支持不同的字体格式，所以要考虑不同字体的加载，所以这里坐下简要介绍：</p>
+<p><strong>一、TureTpe(.ttf)格式：</strong></p>
+<p>.ttf字体是Windows和Mac的最常见的字体，是一种RAW格式，因此他不为网站优化,支持这种字体的浏览器有【IE9+,Firefox3.5+,Chrome4+,Safari3+,Opera10+,iOS Mobile Safari4.2+】；</p>
+<p><strong>二、OpenType(.otf)格式：</strong></p>
+<p>.otf字体被认为是一种原始的字体格式，其内置在TureType的基础上，所以也提供了更多的功能,支持这种字体的浏览器有【Firefox3.5+,Chrome4.0+,Safari3.1+,Opera10.0+,iOS Mobile Safari4.2+】；</p>
+<p><strong>三、Web Open Font Format(.woff)格式：</strong></p>
+<p>.woff字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType的压缩版本，同时也支持元数据包的分离,支持这种字体的浏览器有【IE9+,Firefox3.5+,Chrome6+,Safari3.6+,Opera11.1+】；</p>
+<p><strong>四、Embedded Open Type(.eot)格式：</strong></p>
+<p>.eot字体是IE专用字体，可以从TrueType创建此格式字体,支持这种字体的浏览器有【IE4+】；</p>
+<p><strong>五、SVG(.svg)格式：</strong></p>
+<p>.svg字体是基于SVG字体渲染的一种格式,支持这种字体的浏览器有【Chrome4+,Safari3.1+,Opera10.0+,iOS Mobile Safari3.2+】。</p>
+<p>这就意味着在@font-face中我们至少需要.woff,.eot两种格式字体，甚至还需要.svg等字体达到更多种浏览版本的支持。</p>
+<p>最后为了让更多的浏览器支持它，有种特殊写法，如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line"><span class="attribute">font-family</span>: <span class="string">'YourWebFontName'</span>;</span><br><span class="line"><span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'YourWebFontName.eot'</span>);        <span class="comment">/* IE9 Compat Modes */</span></span><br><span class="line"><span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'YourWebFontName.eot?#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>),          <span class="comment">/* IE6-IE8 */</span></span><br><span class="line"><span class="built_in">url</span>(<span class="string">'YourWebFontName.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),                <span class="comment">/* Modern Browsers */</span></span><br><span class="line"><span class="built_in">url</span>(<span class="string">'YourWebFontName.ttf'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>),              <span class="comment">/* Safari, Android, iOS */</span></span><br><span class="line"><span class="built_in">url</span>(<span class="string">'YourWebFontName.svg#YourWebFontName'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);         <span class="comment">/* Legacy iOS */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说了这么多，我自己都有点糊涂了，先来个简单demo吧。</p>
+<p>Html Code:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"font"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后我们来通过@font-face来自定义的字体：</p>
+<p>CSS Code: (为了更好的粘贴，不贴图片了)<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line"> <span class="attribute">font-family</span>: <span class="string">'myfont'</span>;</span><br><span class="line"> <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'../fonts/neues_bauen_demo-webfont.eot'</span>);</span><br><span class="line"> <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'../fonts/neues_bauen_demo-webfont.eot?#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>),</span><br><span class="line"> <span class="built_in">url</span>(<span class="string">'../fonts/neues_bauen_demo-webfont.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),</span><br><span class="line"> <span class="built_in">url</span>(<span class="string">'../fonts/neues_bauen_demo-webfont.ttf'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>),</span><br><span class="line"> <span class="built_in">url</span>(<span class="string">'../fonts/neues_bauen_demo-webfont.svg#NeuesBauenDemo'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);</span><br><span class="line"> <span class="attribute">font-weight</span>: normal;</span><br><span class="line"> <span class="attribute">font-style</span>: normal;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">/*然后呢，写入css去引用就可以啦,如下：*/</span></span><br><span class="line"><span class="selector-tag">h2</span><span class="selector-class">.font</span>&#123;<span class="attribute">font-family</span>:<span class="string">"myfont"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可能会有同学会问，我到哪里去获得这些字体格式的呢，这里我推荐几个网站吧，都是免费的，</p>
+<p><a href="http://www.google.com/fonts/" target="_blank" rel="noopener">google.com</a>或者是<a href="http://www.dafont.com/single-malta.font" target="_blank" rel="noopener">dafont.com</a>我用的是<a href="http://www.dafont.com/" target="_blank" rel="noopener">www.dafont.com</a>这个，点击进去，可以看到很多的英文字体，随便选个自己认为漂亮的字体，下载解压后，会发现只有一种格式的字体啊，是的，是ttf格式的字体，那么怎么来获取额外的字体呢，可以通过这个网站<a href="http://www.fontsquirrel.com/tools/webfont-generator" target="_blank" rel="noopener">fontsquirrel.com</a>来获得。</p>
+<p>找到导航：<strong>webfont generator</strong></p>
+<p>看到如下页面：<br><img src="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/U7ABV3BQ_MVO0WYP@F83K1.jpg"></p>
+<p>下载好后，解压：</p>
+<p><a href="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/fontjiya1.jpgg" target="_blank" rel="noopener"><img src="http://www.7sby0e.com1.z0.glb.clouddn.com/webfuns/wp-content/uploads/2014/05/fontjiya1.jpg" alt="fontjiya"></a></p>
+<p>可以看到，解压后的文件，里面有我们所需要的一些字体格式，放入相应的位置再去引用就可以了，为了方便管理，建议单独新建一个fonts文件夹。</p>
+<p>使用顺序：1、获得字体 2、获得多种字体格式 3、写入兼容性的css去引用字体，保证能引用到，如果无效，检查引用路径，或字体格式名。</p>
+<p>总结：利用@font-face来加载字体，特别是对于英文来说，更为方便，因为英文的字体格式大小相对来说较小，这样的话，浏览器下载字体的时候就会很快，在这里，不推荐使用中文字体，中文字体太大了，动则几M，实在伤不起，最后，如果大家觉得有趣就去试试吧。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <div>
+ 
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Css3属性/" rel="tag"># Css3属性</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/04/27/create-css-triangle/" rel="next" title="Css:制作小三角的三种方法">
+                <i class="fa fa-chevron-left"></i> Css:制作小三角的三种方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/02/less-varible/" rel="prev" title="less初级应用-@变量">
+                less初级应用-@变量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </div></article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="夜丶光">
+            
+              <p class="site-author-name" itemprop="name">夜丶光</p>
+              <div class="site-description motion-element" itemprop="description">我的私人笔记 :)</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/codevers" title="GitHub &rarr; https://github.com/codevers" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="http://shang.qq.com/email/stop/email_stop.html?qq=1142328936&sig=a1c657365db7e82805ea4b2351081fc3ebcde159f8ae49b1&tttt=1" title="QQ &rarr; http://shang.qq.com/email/stop/email_stop.html?qq=1142328936&sig=a1c657365db7e82805ea4b2351081fc3ebcde159f8ae49b1&tttt=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:codevers@yeah.net" title="E-Mail &rarr; mailto:codevers@yeah.net" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夜丶光</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+  Build on <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="theme-info">
+  Save in <a class="theme-link" href="https://github.com/Codevers/codevers.github.io">GitHub</a>
+</div>
+
+<!-- 
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+ -->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+<script src="[object Object]"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'HHT2OnjduBlvptLG10yIEKs6-gzGzoHsz',
+    appKey: 'Jo57YMhPEAnk8iMw1eSaBdeq',
+    placeholder: '快来评论我ヾﾉ≧∀≦)o',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-CN' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <script src="/live2d-widget/autoload.js"></script>
+
+</body>
+</html>

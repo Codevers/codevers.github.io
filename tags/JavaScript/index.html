@@ -389,7 +389,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/01/05/按值传递-Or-按引用传递/" itemprop="url">
+          <a class="post-title-link" href="/2017/01/05/value-or-quote/" itemprop="url">
             
               <span itemprop="name">按值传递 Or 按引用传递</span>
             
@@ -415,7 +415,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2016/10/18/创建对象/" itemprop="url">
+          <a class="post-title-link" href="/2016/10/18/js-create-object/" itemprop="url">
             
               <span itemprop="name">创建对象的几种方式</span>
             
@@ -441,7 +441,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2015/08/01/执行环境与作用域/" itemprop="url">
+          <a class="post-title-link" href="/2015/08/01/js-scope-and-context/" itemprop="url">
             
               <span itemprop="name">执行环境与作用域</span>
             
@@ -467,7 +467,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2015/07/01/函数的参数/" itemprop="url">
+          <a class="post-title-link" href="/2015/07/01/js-function-arguments/" itemprop="url">
             
               <span itemprop="name">函数的参数</span>
             
@@ -493,7 +493,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2015/03/16/变量类型：基本类型与引用类型/" itemprop="url">
+          <a class="post-title-link" href="/2015/03/16/varible-types/" itemprop="url">
             
               <span itemprop="name">变量类型：基本类型 与 引用类型</span>
             
@@ -593,9 +593,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -644,9 +642,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -886,6 +882,38 @@
   
 
   
+  
+
+  
+
+<script src="[object Object]"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'HHT2OnjduBlvptLG10yIEKs6-gzGzoHsz',
+    appKey: 'Jo57YMhPEAnk8iMw1eSaBdeq',
+    placeholder: '快来评论我ヾﾉ≧∀≦)o',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-CN' || 'zh-cn'
+  });
+</script>
+
+
 
 
 

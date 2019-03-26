@@ -409,7 +409,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/06/20/小程序-星星评论/" itemprop="url">
+          <a class="post-title-link" href="/2017/06/20/wxProgram-comment/" itemprop="url">
             
               <span itemprop="name">小程序-星星评论</span>
             
@@ -444,7 +444,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/06/04/原型对象/" itemprop="url">
+          <a class="post-title-link" href="/2017/06/04/js-prototype-object/" itemprop="url">
             
               <span itemprop="name">原型对象</span>
             
@@ -479,7 +479,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/01/15/Array方法/" itemprop="url">
+          <a class="post-title-link" href="/2017/01/15/js-array-method/" itemprop="url">
             
               <span itemprop="name">Array方法</span>
             
@@ -514,7 +514,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2017/01/05/按值传递-Or-按引用传递/" itemprop="url">
+          <a class="post-title-link" href="/2017/01/05/value-or-quote/" itemprop="url">
             
               <span itemprop="name">按值传递 Or 按引用传递</span>
             
@@ -554,7 +554,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2016/10/18/创建对象/" itemprop="url">
+          <a class="post-title-link" href="/2016/10/18/js-create-object/" itemprop="url">
             
               <span itemprop="name">创建对象的几种方式</span>
             
@@ -589,7 +589,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2016/10/11/元素自适应排列的几种方法/" itemprop="url">
+          <a class="post-title-link" href="/2016/10/11/element-auto-align/" itemprop="url">
             
               <span itemprop="name">元素自适应排列的几种方法</span>
             
@@ -624,7 +624,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2016/09/05/移动端-遇到的一些坑（持续更新）/" itemprop="url">
+          <a class="post-title-link" href="/2016/09/05/mobile-keng/" itemprop="url">
             
               <span itemprop="name">移动端 - 遇到的一些坑（持续更新）</span>
             
@@ -659,7 +659,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2016/07/06/Mobile适配方案/" itemprop="url">
+          <a class="post-title-link" href="/2016/07/06/mobile-auto-post/" itemprop="url">
             
               <span itemprop="name">Mobile适配方案</span>
             
@@ -699,7 +699,7 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2015/08/01/执行环境与作用域/" itemprop="url">
+          <a class="post-title-link" href="/2015/08/01/js-scope-and-context/" itemprop="url">
             
               <span itemprop="name">执行环境与作用域</span>
             
@@ -734,9 +734,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2015/07/01/ViewPort 视区概念（一）/" itemprop="url">
+          <a class="post-title-link" href="/2015/07/01/mobile-viewport/" itemprop="url">
             
-              <span itemprop="name">ViewPort 视区概念（一）</span>
+              <span itemprop="name">ViewPort 视区概念</span>
             
           </a>
         
@@ -839,9 +839,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -890,9 +888,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1132,6 +1128,38 @@
   
 
   
+  
+
+  
+
+<script src="[object Object]"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'HHT2OnjduBlvptLG10yIEKs6-gzGzoHsz',
+    appKey: 'Jo57YMhPEAnk8iMw1eSaBdeq',
+    placeholder: '快来评论我ヾﾉ≧∀≦)o',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-CN' || 'zh-cn'
+  });
+</script>
+
+
 
 
 
